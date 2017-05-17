@@ -3,6 +3,9 @@ package playerClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.http.HttpServletResponse;
 
 import armorsClasses.Armor;
 import weaponsClasses.Weapon;
@@ -77,22 +80,32 @@ public class Player {
 	public int factorLevel(int level) {
 		return (int) Math.floor( level / 4 );
 	}
-	public void displayEstatics() {
+	public String displayEstatics() throws IOException {
+		
+//		HttpServletResponse response = null;
+//		
+//		@SuppressWarnings("null")
+//		PrintWriter out = response.getWriter();
+		
 		Map<String, Integer> atk = this.shortAttack();
 		Map<String, Integer> dmg = this.causeDamage();
-		System.out.println("<div class='statiscs'>");
-		System.out.println( "<span><strong>Classe</strong> : " + this.nome + "</span><br>");
-		System.out.println( "<span><strong>Level</strong> : " + this.level + "</span><br>");
-		System.out.println( "<span><strong>Força</strong> : " + this._str + " (" + this.getBonus(this._str) + ")</span><br>");
-		System.out.println( "<span><strong>Destreza</strong> : " + this._dex + " (" + this.getBonus(this._dex) + ") </span><br>");
-		System.out.println( "<span><strong>Constituição</strong> : " + this._con + " (" + this.getBonus(this._con) + ") </span><br>");
-		System.out.println( "<span><strong>Inteligência</strong> : " + this._int + " (" + this.getBonus(this._int) + ") </span><br>");
-		System.out.println( "<span><strong>Sabedoria</strong> : " + this._wis + " (" + this.getBonus(this._wis) + ") </span><br>");
-		System.out.println( "<span><strong>Carisma</strong> : " + this._cha + " (" + this.getBonus(this._cha) + ") </span><br>");
-		System.out.println( "<span><strong>Arma</strong> : " + this.weapon.getName() + "</span><br>");
-		System.out.println( "<span><strong>Dado Base</strong> : " + this.weapon.getDice() + "</span><br>");
-		System.out.println( "<span><strong>Valor Ataque</strong> : " + atk.get("damage") + " ( dado ) " + atk.get("dice") + " + bba " + atk.get("bba") + " + bonus " + atk.get("bonus") + " )</span><br>");
-		System.out.println( "<span><strong>Dano com a Arma</strong> : " + dmg.get("total") + " (dado " + dmg.get("dice") + " + bonus " + dmg.get("bonus") + ") </span><br>------<br>");
-		System.out.println( "</div>");
+		
+		String html = "";
+		html +="<div class='statiscs'>";
+		html += "<span><strong>Classe</strong> : " + this.nome + "</span><br>";
+		html += "<span><strong>Level</strong> : " + this.level + "</span><br>";
+		html += "<span><strong>Força</strong> : " + this._str + " (" + this.getBonus(this._str) + ")</span><br>";
+		html += "<span><strong>Destreza</strong> : " + this._dex + " (" + this.getBonus(this._dex) + ") </span><br>";
+		html += "<span><strong>Constituição</strong> : " + this._con + " (" + this.getBonus(this._con) + ") </span><br>";
+		html += "<span><strong>Inteligência</strong> : " + this._int + " (" + this.getBonus(this._int) + ") </span><br>";
+		html += "<span><strong>Sabedoria</strong> : " + this._wis + " (" + this.getBonus(this._wis) + ") </span><br>";
+		html += "<span><strong>Carisma</strong> : " + this._cha + " (" + this.getBonus(this._cha) + ") </span><br>";
+		html += "<span><strong>Arma</strong> : " + this.weapon.getName() + "</span><br>";
+		html += "<span><strong>Dado Base</strong> : " + this.weapon.getDice() + "</span><br>";
+		html += "<span><strong>Valor Ataque</strong> : " + atk.get("damage") + " ( dado ) " + atk.get("dice") + " + bba " + atk.get("bba") + " + bonus " + atk.get("bonus") + " )</span><br>";
+		html += "<span><strong>Dano com a Arma</strong> : " + dmg.get("total") + " (dado " + dmg.get("dice") + " + bonus " + dmg.get("bonus") + ") </span><br>------<br>";
+		html += "</div>";
+		
+		return html;
 	}
 }

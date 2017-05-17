@@ -1,5 +1,7 @@
 package main;
 
+import java.io.IOException;
+
 import playerClasses.Warrior;
 import playerClasses.Wizard;
 import weaponsClasses.LongSword;
@@ -7,7 +9,7 @@ import weaponsClasses.Knife;
 
 public class testeDrive {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		Warrior guerreiro = new Warrior(6);
 		guerreiro.setWeapon(new LongSword(10));
